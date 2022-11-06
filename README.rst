@@ -16,11 +16,13 @@ amex
 
 
 
-Amex 
+Amex
 
 
 * Free software: MIT license
 * Documentation: https://amex.readthedocs.io.
+
+Project Structure created with `cookiecutter`: `https://github.com/audreyfeldroy/cookiecutter-pypackage`
 
 
 Features
