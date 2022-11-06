@@ -1,0 +1,7 @@
+
+
+data: 'amex/data/'
+train: 'train.feather'
+test: 'test.feather'
+train_labels: 'train_labels.csv'
+
