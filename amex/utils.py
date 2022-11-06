@@ -35,12 +35,10 @@ def get_root_dir():
         string: Project root directory
     """
     repo = Repo(search_parent_directories=True)
-
-    # drop the last 5 characters, as they are /.git
     return repo.git_dir[:-5]
 
 
-def get_settings(yaml_file="tracr.yaml"):
+def get_settings(yaml_file="amex.yaml"):
     """Return the project configuration settings.
 
     Args:
