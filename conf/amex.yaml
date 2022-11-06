@@ -1,6 +1,6 @@
 
 
-data: 'amex/data/'
+data: '/amex/data/'
 train_csv: 'train.csv'
 train_feather: 'train.feather'
 test_csv: 'test.csv'
