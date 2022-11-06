@@ -8,7 +8,6 @@ import yaml
 import logging
 from git import Repo
 
-
 def denoise(df):
     df['D_63'] = df['D_63'].apply(lambda t: {'CR':0, 'XZ':1, 'XM':2, 'CO':3, 'CL':4, 'XL':5}[t]).astype(np.int8)
     df['D_64'] = df['D_64'].apply(lambda t: {np.nan:-1, 'O':0, '-1':1, 'R':2, 'U':3}[t]).astype(np.int8)
@@ -17,16 +16,22 @@ def denoise(df):
             df[col] = np.floor(df[col]*100)
     return df
 
-def create_feather_files():
-    train = pd.read_csv('../../data/train_data.csv')
+def create_feather_files(settings):
+    train_csv = settings['data'] + settings['train_csv']
+    train_feather = settings['data'] + settings['train_feather']
+
+    train = pd.read_csv(train_csv)
     train = denoise(train)
-    train.to_feather('../../data/train.feather')
+    train.to_feather(train_feather)
 
     del train
 
-    test = pd.read_csv('../../data/test_data.csv')
+    test_csv = settings['data'] + settings['test_csv']
+    test_feather = settings['data'] + settings['test_feather']
+
+    test = pd.read_csv(test_csv)
     test = denoise(test)
-    test.to_feather('../../data/test.feather')
+    test.to_feather(test_feather)
 
 def get_root_dir():
     """Return the root directory of the repository.

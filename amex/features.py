@@ -77,7 +77,7 @@ transform = [['','rank_','ym_rank_'],[''],['']]
 
 for li, lastk in enumerate([None,3,6]):
     for prefix in transform[li]:
-        df = pd.read_feather(f'./input/train.feather').append(pd.read_feather(f'./input/test.feather')).reset_index(drop=True)
+        df = pd.read_feather(f'../../data/train.feather').append(pd.read_feather(f'../../data/test.feather')).reset_index(drop=True)
         all_cols = [c for c in list(df.columns) if c not in ['customer_ID','S_2']]
         cat_features = ["B_30","B_38","D_114","D_116","D_117","D_120","D_126","D_63","D_64","D_66","D_68"]
         num_features = [col for col in all_cols if col not in cat_features]
@@ -123,14 +123,14 @@ for li, lastk in enumerate([None,3,6]):
         if prefix in ['','last3_']:
             cat_feature_df = pd.concat(pool.map(cat_feature,tqdm(dfs,desc='cat_feature'))).reset_index(drop=True)
 
-            cat_feature_df.to_feather(f'./input/{prefix}cat_feature.feather')
+            cat_feature_df.to_feather(f'../../data/{prefix}cat_feature.feather')
 
         if prefix in ['','last3_','last6_','rank_','ym_rank_']:
             num_feature_df = pd.concat(pool.map(num_feature,tqdm(dfs,desc='num_feature'))).reset_index(drop=True)
-            num_feature_df.to_feather(f'./input/{prefix}num_feature.feather')
+            num_feature_df.to_feather(f'../../data/{prefix}num_feature.feather')
 
         if prefix in ['','last3_']:
             diff_feature_df = pd.concat(pool.map(diff_feature,tqdm(dfs,desc='diff_feature'))).reset_index(drop=True)
-            diff_feature_df.to_feather(f'./input/{prefix}diff_feature.feather')
+            diff_feature_df.to_feather(f'../../data/{prefix}diff_feature.feather')
 
         pool.close()

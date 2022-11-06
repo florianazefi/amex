@@ -1,7 +1,9 @@
 
 
 data: 'amex/data/'
-train: 'train.feather'
-test: 'test.feather'
+train_csv: 'train.csv'
+train_feather: 'train.feather'
+test_csv: 'test.csv'
+test_feather: 'test.feather'
 train_labels: 'train_labels.csv'
 
